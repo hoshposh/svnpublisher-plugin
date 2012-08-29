@@ -1,10 +1,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.jvnet.hudson.plugins</groupId>
+        <groupId>org.jenkins-ci.plugins</groupId>
         <artifactId>plugin</artifactId>
-        <version>1.319</version>
-        <relativePath>../pom.xml</relativePath>
+        <version>1.399</version>
     </parent>
 
     <groupId>com.mtvi.plateng.subversion</groupId>
@@ -13,9 +12,15 @@
     <version>0.2-SNAPSHOT</version>
     <name>SVN Publisher plugin</name>
     <description>
-        Plugin for Hudson that publishes to SVN.
+        Plugin for Jenkins that publishes to SVN.
     </description>
-    <url>http://wiki.hudson-ci.org/display/HUDSON/SVN+Publisher</url>
+    <url>https://wiki.jenkins-ci.org/display/JENKINS/SVN+Publisher</url>
+    
+    <scm>
+        <connection>scm:svn:https://svn.jenkins-ci.org/trunk/hudson/plugins/svnpublisher</connection>
+        <developerConnection>scm:svn:https://svn.jenkins-ci.org/trunk/hudson/plugins/svnpublisher</developerConnection>
+    </scm>
+    
     <developers>
         <developer>
             <id>brentsmith</id>
@@ -31,6 +36,24 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-release-plugin</artifactId>
+                <configuration>
+                    <goals>deploy</goals>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    
+    <distributionManagement>
+        <repository>
+            <id>maven.jenkins-ci.org</id>
+            <url>http://maven.jenkins-ci.org:8081/content/repositories/releases/</url>
+        </repository>
+    </distributionManagement>
+    
     <repositories>
         <repository>
             <id>repo.jenkins-ci.org</id>
